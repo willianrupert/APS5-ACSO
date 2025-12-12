@@ -1,5 +1,5 @@
 # ==============================================================================
-# VERSÃO CORRIGIDA E ROBUSTA (SEM IMPORTS)
+# Escalonamento (Python) Grupo Maria Eduarda, Maria Luísa e Willian
 # ==============================================================================
 
 def ler_arquivo(nome_arquivo):
