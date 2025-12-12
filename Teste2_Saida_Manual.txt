@@ -1,0 +1,26 @@
+RESULTADOS DO TESTE 2 (Caso de Borda - Quantum Curto e Empates)
+--------------------------------------------------
+Entrada:
+3 Processos
+Quantum: 2ms
+Tempo de Troca: 1ms
+
+--- ANÁLISE DO ROUND ROBIN ---
+Tempo Total: 13ms
+Overhead: 30.77% (Muito Alto!)
+
+Explicação:
+1. O Quantum baixo (2ms) forçou muitas trocas de contexto. O sistema gastou quase 1/3 do tempo apenas trocando processos, o que demonstra ineficiência.
+2. Observe a alternância: P1 roda 2ms -> Troca -> P2 roda 2ms -> Troca -> P1 volta para terminar.
+3. P3 chega no tempo 3, entra na fila, e espera sua vez no carrossel (FIFO).
+
+--- ANÁLISE DO PRIORIDADE (PREEMPTIVO) ---
+Tempo Total: 12ms
+Overhead: 25.00%
+
+Explicação da Preempção (O ponto chave deste teste):
+1. [t=0] P1 e P2 chegam juntos com Prioridade 2. P1 ganha pelo ID e começa.
+2. [t=3] P3 chega. Ele tem Prioridade 1 (melhor que a 2 do P1).
+3. O Escalonador INTERROMPE o P1 imediatamente (no meio de sua execução) para colocar o P3.
+4. P3 roda até acabar (t=6).
+5. Depois que P3 sai, P1 volta para terminar o que faltava, ganhando de P2 pelo critério de desempate (ID).

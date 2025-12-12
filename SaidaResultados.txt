@@ -1,0 +1,18 @@
+--- Round Robin ---
+Tempo médio de retorno: 9.67
+Número de chaveamento de processos: 4
+Overhead: 0.3077 (30.77%)
+Tempo total para executar: 13
+Linha do tempo:
+[0-2: P1] -> [2-3: Escalonador] -> [3-5: P2] -> [5-6: Escalonador] -> [6-8: P1] -> [8-9: Escalonador] -> [9-11: P3] -> [11-12: Escalonador] -> [12-13: P2]
+
+==================================================
+
+--- Prioridade ---
+Tempo médio de retorno: 7.67
+Número de chaveamento de processos: 3
+Overhead: 0.2500 (25.00%)
+Tempo total para executar: 12
+Linha do tempo:
+[0-3: P1] -> [3-4: Escalonador] -> [4-6: P3] -> [6-7: Escalonador] -> [7-8: P1] -> [8-9: Escalonador] -> [9-12: P2]
+

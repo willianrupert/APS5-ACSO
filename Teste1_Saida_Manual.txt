@@ -1,0 +1,29 @@
+RESULTADOS DO TESTE 1 (Dados do PDF)
+--------------------------------------------------
+Entrada:
+5 Processos
+Quantum: 20ms
+Tempo de Troca: 1ms
+
+--- ANÁLISE DO ROUND ROBIN ---
+Tempo Total: 247ms
+Overhead: 4.86%
+
+Explicação da Linha do Tempo:
+1. P1 inicia, mas seu tempo (50) é maior que o Quantum (20). Sofre preempção em t=20.
+2. Ocorrem trocas de contexto (1ms) entre cada processo.
+3. P2 (15ms) e P3 (10ms) rodam direto até o fim, pois seus tempos são menores que o Quantum.
+4. P4 (100ms) e P5 (60ms) precisam de múltiplas rodadas no processador.
+5. A ordem segue a fila circular (FIFO) corretamente.
+
+--- ANÁLISE DO PRIORIDADE (PREEMPTIVO) ---
+Tempo Total: 240ms
+Overhead: 2.08%
+
+Explicação da Linha do Tempo:
+1. [t=0] P1 (Prio 1) começa.
+2. [t=1] P2 chega com Prio 0 (maior prioridade). Ocorre PREEMPÇÃO imediata. P1 sai, P2 entra.
+3. [t=5] P4 chega com Prio 0. Como empata com P2, o P2 continua (regra de manter o atual ou ordem de chegada).
+4. P4 roda logo após P2 terminar, pois tem prioridade 0 (melhor que P1, P3, P5).
+5. P1 só volta a rodar (t=119) depois que todos de prioridade 0 terminam.
+6. P5 (Prio 3) é o último a rodar, pois tem a pior prioridade.
